@@ -1,17 +1,16 @@
-
 public class Compiler {
 
     public static void main(String[] args) throws IOException {
         //создаем переменную file в которой хранится исходная программа 
         FileInputStream file = new FileInputStream("Program.txt");
-        Controller(file);
-
+        //передаем файл в класс Lexer
+        Lexer lex = new Lexer(file);
+        Parser pars=new Parser();
+        Optimizer opt = new Optimizer();
+         
     }
-}
+} 
 
-import java.io.*;
-import java.util.*;
-import java.util.regex.*;
 
 public class Lexer {
 
@@ -90,11 +89,9 @@ public class Lexer {
         writer.close();
         writer1.close();
         writer2.close();
-   
-   
+       
     }
 }
-
 public class Parser {
       Parser() {
     //грамматика
@@ -107,10 +104,9 @@ public class Parser {
 //построение дерева синтаксического разбора
 String syntaxtree;
 
-Optimizer opt=new Optimizer(syntaxtree);
+
     }
 }
-
 
 public class Optimizer {
 
@@ -120,25 +116,15 @@ public class Optimizer {
         Generator gen=new Generator(triads);
     }
     
-}
+}import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Generator {
 
-    Generator()) throws IOException {
+    Generator(String triads) throws IOException {
         //перевод триад в код на ассемблер
         BufferedWriter bw = new BufferedWriter(new FileWriter("Result.txt"));
     }
     
-}
-import java.io.File;
-
-
-public class Controller {
-    Controller(File file) {
-    Lexer lex=new Lexer();
-    Parser pars=new Parser();
-    Optimizer opt=new Optimizer();
-    Generator gen=new Generator();
-    
-}
 }
